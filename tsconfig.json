@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ESNext"
+    ],
+    "jsx": "react",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@public/*": [
+        "public/*"
+      ]
+    },
+    "module": "ES6",
+    "outDir": "./dist/",
+    "allowJs": true,
+    "baseUrl": ".",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "moduleResolution": "Node",
+    "preserveWatchOutput": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*",
+    "types.d.ts"
+  ],
+  "exclude": ["node_modules"],
+  "compileOnSave": true
+}
