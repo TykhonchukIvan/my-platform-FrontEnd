@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
+const getMode = () => process.env.MY_PLATFORM_FRONT_NODE_ENV === 'production' ? 'production' : 'development';
+
 const ruleTypeScriptFiles = {
   test: [/\.ts$/, /\.tsx?$/, /\.js$/, /\.jsx?$/],
   exclude: /node_modules/,
@@ -72,6 +74,7 @@ module.exports = {
     filename: '[name].[hash].js',
     publicPath: '/',
   },
+  mode: getMode(),
   module: { rules: [ruleTypeScriptFiles, ruleImagesFiles, ruleLessCssFiles] },
   resolve: {
     plugins: [new TsconfigPathsPlugin()],

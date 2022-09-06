@@ -3,8 +3,6 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const common = require('./webpack.common.js');
 
-const getMode = () => process.env.MY_PLATFORM_FRONT_NODE_ENV === 'production' ? 'production' : 'development';
-
 const getPluginsBuild = () => ([new CleanWebpackPlugin()]);
 
 const getOptimization = () => ({
@@ -33,7 +31,6 @@ const getPerformance = () => ({
 });
 
 module.exports = merge(common, {
-  mode: getMode(),
   plugins: getPluginsBuild(),
   optimization: getOptimization(),
   performance: getPerformance()
