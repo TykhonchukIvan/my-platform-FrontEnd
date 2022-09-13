@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from '@src/app/App';
 import { Provider } from 'react-redux';
-import {createStore} from '@src/redux/storeConfig';
+import * as ReactDOM from 'react-dom/client';
+
+import { createStore } from '@src/redux/storeConfig';
+
+import { App } from '@src/app/App';
 
 const store = createStore();
 

@@ -1,8 +1,7 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
-import {IAppState} from '@src/redux/app/types';
-import {reduxModules} from '@src/global-interfaces';
+import {reduxModules} from '@src/global-constants';
 
-const initialState: IAppState = {};
+const initialState = {};
 
 export const AppTypes = {
   INIT_APP : `${reduxModules.appPage}/init`,

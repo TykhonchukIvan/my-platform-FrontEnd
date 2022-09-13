@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import {rootReducer} from './rootReducer';
 
 
-const isDevelopmentMode = (): boolean => process.env.MY_PLATFORM_FRONT_NODE_ENV !== 'production';
+const isDevelopmentMode = () => process.env.MY_PLATFORM_FRONT_NODE_ENV !== 'production';
 
 export const createStore = () => {
   const sagaMiddleWare = createSagaMiddleware();

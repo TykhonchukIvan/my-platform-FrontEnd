@@ -5,20 +5,19 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 const getMode = () => process.env.MY_PLATFORM_FRONT_NODE_ENV === 'production' ? 'production' : 'development';
+const resolvePath = p => path.resolve(__dirname, p);
 
-const ruleTypeScriptFiles = {
-  test: [/\.ts$/, /\.tsx?$/, /\.js$/, /\.jsx?$/],
+const rulesJavaScriptFiles = () => ({
+  test: [/\.js$/, /\.jsx?$/],
   exclude: /node_modules/,
-  loader: 'ts-loader',
-  resolve: {
-    extensions: ['.ts', '.tsx', '.json'],
-  },
-};
+  use: {
+    loader: "babel-loader"
+  }
+});
 
-const ruleLessCssFiles = {
+const rulesLessCssFiles = () => ({
   test: [/\.less$/, /\.css$/],
   use: [
     MiniCssExtractPlugin.loader,
@@ -32,9 +31,9 @@ const ruleLessCssFiles = {
         },
       },
     }],
-}
+});
 
-const ruleImagesFiles = {
+const rulesImagesFiles = () => ({
   test: /\.(png|svg|jpg|gif)$/,
   use: {
     loader: 'file-loader',
@@ -43,7 +42,15 @@ const ruleImagesFiles = {
       outputPath: 'images/',
     },
   },
-};
+});
+
+const rulesResolve = () => ({
+  extensions: ['.js', '.jsx', '.json'],
+  alias: {
+    '@src': resolvePath('./src'),
+    '@public': resolvePath('./public'),
+  },
+})
 
 const getEnv = () => {
   const fileEnv = dotenv.config({ path: '.env' }).parsed;
@@ -68,17 +75,15 @@ const getPlugins = () => {
 };
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, '/build'),
     filename: '[name].[hash].js',
     publicPath: '/',
   },
   mode: getMode(),
-  module: { rules: [ruleTypeScriptFiles, ruleImagesFiles, ruleLessCssFiles] },
-  resolve: {
-    plugins: [new TsconfigPathsPlugin()],
-  },
+  module: { rules: [rulesJavaScriptFiles(), rulesLessCssFiles(), rulesImagesFiles()] },
+  resolve: rulesResolve(),
   plugins: [
     getEnv(),
     ...getPlugins(),
