@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import favicon from '@public/favicon.svg'
 import {useDispatch} from 'react-redux';
 import {appActions} from '@src/redux/app/reducer';
+import Loader from '@src/components/Loader';
+
 
 export const App = () => {
   const dispatchAction = useDispatch();
@@ -10,5 +11,7 @@ export const App = () => {
     dispatchAction(appActions.init())
   }, [])
 
-  return <div><img src={favicon}/></div>
+  return <div>
+    <Loader size={'big'} />
+  </div>
 }
