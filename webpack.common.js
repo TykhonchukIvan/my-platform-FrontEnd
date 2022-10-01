@@ -66,7 +66,7 @@ const getPlugins = () => {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '/public/index.html'),
       filename: 'index.html',
-      favicon: path.join(__dirname, '/public/images/flower.svg'),
+      favicon: path.join(__dirname, '/public/images/favicon.svg'),
     }),
     new MiniCssExtractPlugin(),
     new CssMinimizerPlugin(),

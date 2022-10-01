@@ -1,7 +1,11 @@
-import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import {appActions} from '@src/redux/app/reducer';
-import Loader from '@src/components/Loader';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import { appActions } from '@src/redux/app/reducer';
+
+import { getTheme } from '@src/themes/getTheme';
+
 
 
 export const App = () => {
@@ -11,7 +15,9 @@ export const App = () => {
     dispatchAction(appActions.init())
   }, [])
 
-  return <div>
-    <Loader size={'big'} />
-  </div>
-}
+  return (
+    <ThemeProvider theme={getTheme('theme')}>
+
+    </ThemeProvider>
+  )
+};
