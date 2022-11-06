@@ -1,50 +1,61 @@
 import React from 'react';
-import { StyledLoader } from './styled';
+import PropTypes from 'prop-types';
+
+import { SquareWrapper, StyledLoaderWrapper } from './styled';
 
 
 const Loader = (props) => {
 
   const { size } = props;
 
-  const getSizeLoader = () => {
+  const getSizeLoader = (size) => {
     switch (size) {
-      case 'big' :
+      case 'large' :
         return {
-          width: '100px',
-          height: '100px',
-          border: '8px',
+          widthWrapper: 100,
+          heightWrapper: 100,
+          widthSquare: 27,
+          heightSquare: 27,
+          margin: 3,
         }
       case 'small' :
         return {
-          width: '25px',
-          height: '25px',
-          border: '2px',
+          widthWrapper: 25,
+          heightWrapper: 25,
+          widthSquare: 5,
+          heightSquare: 5,
+          margin: 1,
         }
       default :
         return {
-          width: '50px',
-          height: '50px',
-          border: '4px',
+          widthWrapper: 50,
+          heightWrapper: 50,
+          widthSquare: 12,
+          heightSquare: 12,
+          margin: 2,
         }
     }
   }
 
+  const animationDelayArr = [1000, 800, 600, 800, 600, 400, 600, 400, 200]
+
+  const GetSquare = () => animationDelayArr.map((el, index) => <SquareWrapper
+    key={index}
+    className="square"
+    animation={el}
+    size={getSizeLoader(size)}/>
+  )
+
   return (
-    <>
-      <StyledLoader id="globalLoader" size={getSizeLoader()}>
-        <div className="loading">
-          <div className="preloader">
-            <div className="preloader_content">
-              <div className="preloader_first" />
-              <div className="preloader_second" />
-              <div className="preloader_third" />
-            </div>
-          </div>
-        </div>
-      </StyledLoader>
-    </>
+    <StyledLoaderWrapper size={getSizeLoader(size)}>
+      <GetSquare />
+    </StyledLoaderWrapper>
   );
 }
+
+Loader.propTypes = {
+  size: PropTypes.string.isRequired,
+};
 
 
 export default Loader;

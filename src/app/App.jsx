@@ -1,23 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React  from 'react';
+import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import { appActions } from '@src/redux/app/reducer';
+import { GlobalStyle } from '@src/app/globalStyle';
 
-import { getTheme } from '@src/themes/getTheme';
+import { appStore } from '@src/redux/app/selector';
 
+import { Main } from '@src/modules/Main';
 
 
 export const App = () => {
-  const dispatchAction = useDispatch();
-
-  useEffect(() => {
-    dispatchAction(appActions.init())
-  }, [])
+  const theme = useSelector(appStore.getTheme);
 
   return (
-    <ThemeProvider theme={getTheme('theme')}>
-
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Main />
     </ThemeProvider>
   )
 };

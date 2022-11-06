@@ -1,19 +1,30 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
-import {reduxModules} from '@src/global-constants';
+import { reduxModules } from '@src/global-constants';
 
-const initialState = {};
+const initialState = {
+  themeName: 'light',
+  theme: {},
+};
 
 export const AppTypes = {
-  INIT_APP : `${reduxModules.appPage}/init`,
+  INIT_APP: `${reduxModules.appPage}/init`,
 }
 
 const appSlice = createSlice({
   name: reduxModules.appPage,
   initialState,
-  reducers: {},
+  reducers: {
+    setThemeName: (state, action) => {
+      state.themeName = action.payload;
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
+    }
+  },
 });
 
 export const appActions = {
+  ...appSlice.actions,
   init: createAction(AppTypes.INIT_APP),
 };
 
