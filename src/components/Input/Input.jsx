@@ -1,6 +1,14 @@
 import React from 'react';
-import {WrapperInput} from '@src/components/Input/styled';
+import PropTypes from 'prop-types';
 
-export default () => {
+import { WrapperInput } from '@src/components/Input/styled';
+
+const Input = () => {
   return(<WrapperInput></WrapperInput>)
 }
+
+Input.propTypes = {
+
+};
+
+export default Input;
