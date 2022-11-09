@@ -1,3 +1,5 @@
+import {iconLogo} from "@public/index";
+
 const colors = {
   color_1: '#edf5ff',
   color_2: '#066BB2',
@@ -17,5 +19,6 @@ export const getLightThemeStyles = () => ({
   },
   login: {
     background: colors.color_2,
+    iconLogo: iconLogo.logoLight,
   }
 });

@@ -15,6 +15,13 @@ export const LoginContent = styled.div` && {
 }`;
 
 export const LoginHeader = styled.div` && {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
   
+  .login--img-logo {
+    width: 70px;
+    height: 70px;
+  }
 }`
 
